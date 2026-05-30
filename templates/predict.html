@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouveau Diagnostic - DermAI</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-tr from-[#0b1329] via-[#121d3a] to-[#1a294b] font-['Inter'] min-h-screen text-white flex items-center justify-center p-4">
+
+    <div class="w-full max-w-xl bg-[#1e2d54] rounded-2xl shadow-2xl border border-[#2b3d6f] p-6 sm:p-8 space-y-6">
+        <div class="flex items-center justify-between border-b border-[#2b3d6f] pb-4">
+            <h1 class="text-lg font-bold text-white">Examen Dermatologique</h1>
+            <a href="/dashboard" class="px-3 py-1.5 bg-[#152042] text-xs font-medium rounded-lg text-slate-300 border border-[#2b3d6f] hover:bg-[#1c2b57]">
+                Retour Dashboard
+            </a>
+        </div>
+
+        <form action="/predict" method="POST" enctype="multipart/form-data" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="sm:col-span-2">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Nom du Patient</label>
+                    <input type="text" name="name" required placeholder="Ex: Monia" 
+                           class="w-full bg-[#152042] border border-[#2b3d6f] rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Âge</label>
+                    <input type="number" name="age" required placeholder="Ans" 
+                           class="w-full bg-[#152042] border border-[#2b3d6f] rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1">Sélectionner l'image de la lésion</label>
+                <div class="border-2 border-dashed border-[#2b3d6f] bg-[#152042]/50 rounded-xl p-6 text-center hover:border-indigo-500 transition relative">
+                    <input type="file" name="image" required accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" id="fileField">
+                    <p class="text-sm text-slate-300 font-medium" id="fileNameDisplay">Cliquez ou glissez un fichier ici</p>
+                    <p class="text-xs text-slate-500 mt-1">Fichiers autorisés : JPG, PNG</p>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-sm shadow-md transition">
+                Lancer l'analyse automatique
+            </button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('fileField').onchange = function () {
+            if(this.files[0]) {
+                document.getElementById('fileNameDisplay').textContent = this.files[0].name;
+            }
+        };
+    </script>
+</body>
+</html>

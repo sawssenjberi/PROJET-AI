@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultat - DermAI</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gradient-to-tr from-[#0b1329] via-[#121d3a] to-[#1a294b] min-h-screen text-white flex items-center justify-center p-4">
+
+    <div class="w-full max-w-md bg-[#1e2d54] rounded-2xl shadow-2xl border border-[#2b3d6f] overflow-hidden">
+        <div class="p-6 text-center border-b border-[#2b3d6f] bg-[#152042]/50">
+            <h1 class="text-xl font-bold tracking-tight text-white">Résultat de l'analyse</h1>
+        </div>
+
+        <div class="p-6 flex flex-col items-center space-y-6">
+            <div class="w-full text-center p-4 rounded-xl {% if 'malign' in result.lower() or 'maligne' in result.lower() %} bg-rose-500/10 border border-rose-500/20 text-rose-400 {% else %} bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 {% endif %}">
+                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Diagnostic IA</p>
+                <h2 class="text-xl font-extrabold mt-1">{{ result }}</h2>
+                <p class="text-sm mt-1 font-medium text-white">Confiance : {{ prob }}%</p>
+            </div>
+
+            <div class="w-48 h-48 rounded-xl overflow-hidden border border-[#2b3d6f] bg-[#152042]">
+                <img src="{{ url_for('static', filename=img) }}" alt="Lésion" class="w-full h-full object-cover">
+            </div>
+
+            <div class="w-full bg-[#152042] h-2.5 rounded-full overflow-hidden border border-[#2b3d6f]">
+                <div id="result-bar" class="{% if 'malign' in result.lower() or 'maligne' in result.lower() %} bg-rose-500 {% else %} bg-emerald-500 {% endif %} h-full" style="width: 0%;"></div>
+            </div>
+
+            <div class="w-full pt-4 border-t border-[#2b3d6f] flex justify-center">
+                <a href="/predict" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl text-sm transition">
+                    Retour
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var val = parseFloat("{{ prob }}");
+            var bar = document.getElementById("result-bar");
+            if (bar) { bar.style.width = val + "%"; }
+        });
+    </script>
+</body>
+</html>

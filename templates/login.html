@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DermAI Detect - Connexion</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gradient-to-tr from-[#0b1329] via-[#121d3a] to-[#1a294b] min-h-screen flex items-center justify-center p-4 text-white">
+
+    <div class="w-full max-w-md bg-[#1e2d54] rounded-2xl shadow-2xl border border-[#2b3d6f] p-8 space-y-6">
+        <div class="text-center space-y-2">
+            <div class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center mx-auto shadow-md">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                </svg>
+            </div>
+            <h1 class="text-xl font-bold tracking-tight text-white">DermAI Detect</h1>
+            <p class="text-slate-400 text-xs font-medium">Espace de Diagnostic Clinique</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, msg in messages %}
+              <div class="p-3 bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs font-medium rounded-xl text-center">
+                  {{ msg }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form action="/" method="POST" class="space-y-4">
+            <div>
+                <label class="block text-[10px] font-bold text-slate-300 uppercase tracking-wider mb-1.5">Identifiant</label>
+                <input type="text" name="username" required placeholder="admin" 
+                       class="w-full bg-[#152042] border border-[#2b3d6f] rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+            </div>
+            <div>
+                <label class="block text-[10px] font-bold text-slate-300 uppercase tracking-wider mb-1.5">Mot de passe</label>
+                <input type="password" name="password" required placeholder="••••" 
+                       class="w-full bg-[#152042] border border-[#2b3d6f] rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+            </div>
+            
+            <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl text-sm shadow-md transition">
+                Se connecter
+            </button>
+        </form>
+    </div>
+
+</body>
+</html>

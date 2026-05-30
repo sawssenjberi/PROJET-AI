@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - DermAI</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-tr from-[#0b1329] via-[#121d3a] to-[#1a294b] font-['Inter'] min-h-screen text-white flex flex-col">
+
+    <nav class="bg-[#1e2d54] border-b border-[#2b3d6f] px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center font-bold">D</div>
+            <span class="font-bold tracking-tight">DermAI Detect</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="text-xs font-medium text-slate-300">Docteur : <strong class="text-white">{{ session['user'] }}</strong></span>
+            <a href="/logout" class="text-xs font-semibold text-rose-400 hover:underline">Déconnexion</a>
+        </div>
+    </nav>
+
+    <main class="flex-1 max-w-4xl w-full mx-auto px-4 py-12 flex flex-col justify-center space-y-8">
+        <div class="text-center">
+            <h2 class="text-2xl font-bold tracking-tight">Espace d'Analyse Clinique</h2>
+            <p class="text-slate-400 text-sm mt-1">Sélectionnez une action ci-dessous pour démarrer.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-6">
+            <a href="/predict" class="bg-[#1e2d54] p-6 rounded-2xl border border-[#2b3d6f] shadow-xl hover:bg-[#233563] transition flex flex-col justify-between">
+                <div>
+                    <div class="w-10 h-10 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-white mb-1.5">Nouvel Examen IA</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Soumettre un cliché de lésion cutanée pour classification par apprentissage profond.</p>
+                </div>
+                <span class="mt-4 inline-flex items-center text-xs font-semibold text-indigo-400">Démarrer &rarr;</span>
+            </a>
+
+            <a href="/patients" class="bg-[#1e2d54] p-6 rounded-2xl border border-[#2b3d6f] shadow-xl hover:bg-[#233563] transition flex flex-col justify-between">
+                <div>
+                    <div class="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-white mb-1.5">Historique des Analyses</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Consulter la liste de tous les dossiers patients enregistrés en base MySQL.</p>
+                </div>
+                <span class="mt-4 inline-flex items-center text-xs font-semibold text-emerald-400">Ouvrir le registre &rarr;</span>
+            </a>
+        </div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historique des Analyses - DermAI</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gradient-to-tr from-[#0b1329] via-[#121d3a] to-[#1a294b] min-h-screen text-white p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto bg-[#1e2d54] rounded-2xl shadow-2xl border border-[#2b3d6f] p-6 space-y-6">
+        
+        <div class="flex items-center justify-between border-b border-[#2b3d6f] pb-4">
+            <div class="flex items-center gap-2">
+                <span class="text-xl">📋</span>
+                <h1 class="text-xl font-bold tracking-tight text-white">Historique des Analyses</h1>
+            </div>
+            <a href="/dashboard" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-xl shadow transition">
+                Retour au Dashboard
+            </a>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-[#0f1422] text-slate-400 font-bold text-xs uppercase border-b border-[#2b3d6f]">
+                        <th class="py-3 px-4">Nom du Patient</th>
+                        <th class="py-3 px-4">Âge</th>
+                        <th class="py-3 px-4">Résultat AI</th>
+                        <th class="py-3 px-4">Confiance</th>
+                        <th class="py-3 px-4 text-center">Image</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-[#2b3d6f]/40 text-sm">
+                    {% for patient in patients %}
+                    <tr class="hover:bg-[#233563]/50 transition">
+                        <td class="py-3 px-4 font-semibold text-white">{{ patient.name }}</td>
+                        <td class="py-3 px-4 text-slate-300">{{ patient.age }} ans</td>
+                        <td class="py-3 px-4">
+                            {% if 'malign' in patient.result.lower() or 'maligne' in patient.result.lower() %}
+                            <span class="px-2 py-0.5 rounded text-xs bg-rose-500 text-white font-bold">Maligne</span>
+                            {% else %}
+                            <span class="px-2 py-0.5 rounded text-xs bg-emerald-500 text-white font-bold">Bénigne</span>
+                            {% endif %}
+                        </td>
+                        <td class="py-3 px-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-16 bg-[#152042] h-2 rounded-full overflow-hidden border border-[#2b3d6f]">
+                                    <div class="{% if 'malign' in patient.result.lower() or 'maligne' in patient.result.lower() %} bg-rose-500 {% else %} bg-emerald-500 {% endif %} h-full hist-bar" data-width="{{ patient.probability }}"></div>
+                                </div>
+                                <span class="font-mono text-xs font-bold text-slate-300">{{ patient.probability }}%</span>
+                            </div>
+                        </td>
+                        <td class="py-3 px-4 flex justify-center">
+                            <div class="w-10 h-10 rounded border border-[#2b3d6f] overflow-hidden bg-[#152042]">
+                                <img src="{{ url_for('static', filename=patient.image_path) }}" 
+                                     onerror="this.closest('tr').remove();" 
+                                     class="w-full h-full object-cover" 
+                                     alt="Lésion">
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if not patients %}
+        <div class="p-8 text-center text-slate-400 text-sm">
+            Aucune analyse disponible dans l'historique.
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.hist-bar').forEach(function(bar) {
+                bar.style.width = bar.getAttribute('data-width') + '%';
+            });
+        });
+    </script>
+</body>
+</html>
