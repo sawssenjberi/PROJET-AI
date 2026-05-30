@@ -11,7 +11,7 @@ app.secret_key = "secret"
 UPLOAD_FOLDER = "static/uploads/"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Load the model
+
 model = load_model("model/vgg16_skin_cancer.h5")
 
 db = mysql.connector.connect(
