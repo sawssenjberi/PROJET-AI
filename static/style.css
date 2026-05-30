@@ -1,4 +1,3 @@
-/* Global Dark Medical Navy/Purple Theme */
 body {
     background: linear-gradient(135deg, #0b1329 0%, #121d3a 50%, #1a294b 100%) !important;
     color: #f8fafc !important;
@@ -7,14 +6,13 @@ body {
     margin: 0;
 }
 
-/* Fix text and container visibility against dark background */
+
 .bg-white {
     background-color: #1e2d54 !important;
     border: 1px solid #2b3d6f !important;
     color: #ffffff !important;
 }
 
-/* Style inputs to match the dark theme */
 input[type="text"], input[type="password"], input[type="number"] {
     background-color: #152042 !important;
     border: 1px solid #2b3d6f !important;
@@ -25,7 +23,7 @@ input::placeholder {
     color: #64748b !important;
 }
 
-/* Historical table contrast fixes */
+
 table {
     color: #e2e8f0 !important;
 }
