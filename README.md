@@ -1,47 +1,49 @@
 # Application Clinique de Détection et Diagnostic des Lésions Cutanées par Intelligence Artificielle
 
-Ce projet présente une application médicale web complète conçue pour assister le personnel clinique dans l'analyse et la classification automatisée des lésions de la peau. L'objectif principal est de fournir un outil d'aide au diagnostic rapide, précis et sécurisé permettant de différencier les cas de tumeurs bénignes des cas malins.
+## Contexte
+Dans la pratique clinique courante, la forte demande d'expertises dermatologiques et la subtilité visuelle des lésions cutanées peuvent retarder les diagnostics. Ce projet s'inscrit dans le développement de la e-santé en proposant une solution d'assistance numérique. Il s'appuie sur la synergie entre le développement web et le deep learning pour mettre les algorithmes de pointe au service du personnel médical, optimisant ainsi le flux de prise en charge des patients.
 
-L'application intègre un modèle de deep learning basé sur l'architecture VGG16, entraîné spécifiquement sur des données dermatologiques pour fournir une estimation fiable accompagnée d'un score de confiance. L'interface utilisateur applique les standards modernes du web médical avec un environnement sécurisé et une navigation fluide.
+## Objectifs
+- Fournir un outil d'aide à la décision clinique capable de classifier instantanément les images dermatologiques en catégories bénignes ou malignes.
+- Développer une interface utilisateur hautement sécurisée qui respecte la confidentialité des données médicales et limite l'accès aux professionnels de santé.
+- Garantir une excellente transparence des résultats fournis par l'intelligence artificielle en calculant et en affichant un score de confiance précis pour chaque analyse.
+- Permettre un suivi médical continu et structuré à travers l'archivage automatique de l'historique des consultations.
 
-## Architecture Technique et Technologies
+## Fonctionnalités
 
-### Environnement Backend
-Python et le framework Flask pour la gestion du serveur, le routage des requêtes et l'exécution de la logique métier. TensorFlow et Keras gèrent le chargement de l'architecture neuronale et le traitement des prédictions en temps réel. Une base de données locale assure l'archivage et le suivi rigoureux des dossiers des patients.
+### Système d'Authentification Clinique
+Portail de connexion obligatoire et sécurisé pour filtrer les accès de l'établissement de santé, protégeant ainsi l'application et les dossiers confidentiels.
 
-### Interface Frontend
-L'interface utilise HTML5 structuré pour une accessibilité optimale des données médicales. L'habillage graphique s'appuie sur Tailwind CSS pour l'application d'un thème sombre moderne "Medical Navy & Purple" assurant un confort visuel lors d'une utilisation clinique prolongée. JavaScript gère la dynamisation de l'interface, le contrôle des chargements et l'affichage fluide des jauges de confiance.
+### Tableau de Bord Centralisé
+Interface d'accueil épurée facilitant la navigation globale du médecin et offrant un accès rapide aux différents espaces de travail de la plateforme.
 
-## Fonctionnalités Principales de l'Application
+### Analyse IA et Diagnostic en Temps Réel
+Module de téléchargement d'images dermatologiques qui transmet les clichés au modèle de réseau de neurones VGG16, générant une prédiction immédiate accompagnée d'une jauge visuelle de certitude.
 
-Système d'Authentification Clinique : Un portail de connexion restrictif garantissant que seul le personnel médical autorisé peut accéder aux données et soumettre des analyses.
+### Registre de l'Historique des Analyses
+Banque de données centralisée regroupant l'ensemble des fiches des patients et les bilans des examens passés pour faciliter la consultation et le suivi à long terme.
 
-Tableau de Bord Centralisé : Une interface d'accueil épurée agissant comme hub principal pour diriger le médecin vers les différents modules de l'application.
-
-Analyse IA et Prédiction Instantanée : Un module d'importation d'images médicales permettant au praticien de soumettre une photo de lésion cutanée et d'obtenir un diagnostic immédiat avec calcul du pourcentage de certitude.
-
-Registre Historique Global : Un système de traçabilité complet stockant l'ensemble des dossiers des patients, leurs fiches de renseignements et les conclusions des analyses passées.
-
+## Technologies Utilisées
+- **Python :** Langage principal utilisé pour le développement de la logique serveur et l'intégration des scripts scientifiques.
+- **TensorFlow & Keras :** Frameworks de deep learning exploités pour charger le modèle de réseau de neurones convolutif (CNN) et exécuter les prédictions algorithmiques.
+- **VGG16 :** Architecture de réseau pré-entraînée et fine-tunée, spécialisée dans la reconnaissance de motifs complexes et l'extraction de caractéristiques sur les images médicales.
+- **Flask :** Micro-framework Python choisi pour orchestrer le routage de l'application, gérer les sessions utilisateurs et faire le pont entre l'interface utilisateur et le modèle IA.
+- **SQLite / Base de données locale :** Système de stockage léger implémenté pour enregistrer de manière structurée les informations des patients et l'historique de leurs diagnostics.
 ---
 
 ## Guide Visuel et Captures d'Écran du Projet
 
 ### 1. Page de Connexion (Login)
-L'interface d'authentification sécurisée requise pour l'accès à l'espace de travail médical. Elle protège la confidentialité des données des patients.
 ![Login Screen](screenshots/login.png.png)
 
 ### 2. Tableau de Bord (Dashboard)
-Le point d'ancrage de l'utilisateur après une connexion réussie. Cette interface centralise la navigation et affiche les raccourcis vers les actions clés du parcours de soin.
 ![Dashboard Screen](screenshots/dashboard.png.png)
 
 ### 3. Page de Diagnostic (Upload)
-L'espace de travail dédié au dépôt des photographies cliniques des lésions cutanées. Le système prépare l'image pour sa transmission au modèle d'intelligence artificielle.
 ![Upload Screen](screenshots/upload.png.png)
 
 ### 4. Résultat du Diagnostic (Analyse)
-La vue finale affichant le verdict de la classification (Bénigne ou Maligne). Elle intègre une représentation graphique claire sous forme de jauge pour matérialiser le score de confiance calculé par le réseau de neurones.
 ![Result Screen](screenshots/resultat.png.png)
 
 ### 5. Registre de l'Historique des Analyses
-Le tableau de suivi médical qui récapitule l'historique complet des consultations. Il permet au médecin de consulter, trier et suivre l'évolution des dossiers des patients enregistrés.
 ![Historique Screen](screenshots/historique.png.png)
